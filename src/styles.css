@@ -1,0 +1,6 @@
+.swal-overlay {
+    z-index: 10051 !important;
+}
+.swal-modal{
+    z-index: 10052 !important;
+}

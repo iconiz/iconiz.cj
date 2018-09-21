@@ -1,0 +1,126 @@
+<!-- BEGIN: CONTENT/USER/SIGNUP-FORM -->
+<div class="modal fade c-content-login-form" id="signup-form" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content c-square">
+            <div class="modal-header c-no-border">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <h3 class="c-font-24 c-font-sbold">{{l("SignUp")}}</h3>
+                <p>Please fill in below form to create an account with us</p>
+                <div class="c-content-tab-1 c-theme c-margin-t-30">
+                    <div class="clearfix">
+                        <ul class="nav nav-tabs c-font-sbold pull-right">
+                            <li class="active"><a href="#tab_2_1_content" data-toggle="tab" class="c-border-red">邮箱注册</a></li>
+                            <li><a href="#tab_2_2_content" data-toggle="tab" class="c-border-red">手机注册</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content c-bordered c-padding-lg">
+                        <div class="tab-pane active" id="tab_2_1_content">
+                            <form #registerEmailForm="ngForm" method="post" novalidate (ngSubmit)="registByEmail()">
+                                <div class="form-group">
+                                    <label for="signup-email" class="hide">Email</label>
+                                    <input id="signup-email" #emailAddressInput="ngModel" class="form-control" type="email" placeholder="{{l('EmailAddress')}} *" [(ngModel)]="model.emailAddress" name="EmailAddress" required maxlength="256" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$"/>
+                                    <validation-messages [formCtrl]="emailAddressInput"></validation-messages>
+                                </div>
+                                <div class="input-group">
+                                    <label for="signup-email-code" class="hide">获取验证码</label>
+                                    <input id="signup-email-code" #emailCodeInput="ngModel" class="form-control col-xs-6" type="text" placeholder="邮箱验证码 *" [(ngModel)]="model.emailAddressValidateCode" name="EmailAddressCode" required maxlength="6"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" id="getCodeByEmail" (click)="getCodeByEmail()" class="btn btn-sm c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">获取验证码</button>
+                                    </span>
+                                    <validation-messages [formCtrl]="emailCodeInput"></validation-messages>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="Password" class="form-control" [(ngModel)]="model.password" #Password="ngModel" placeholder="{{l('Password')}}" validateEqual="PasswordRepeat"
+                                           reverse="true" [requireDigit]="passwordComplexitySetting.requireDigit" [requireLowercase]="passwordComplexitySetting.requireLowercase"
+                                           [requireUppercase]="passwordComplexitySetting.requireUppercase" [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric" [requiredLength]="passwordComplexitySetting.requiredLength"
+                                           required>
+                                </div>
+                                <div [hidden]="registerEmailForm.form.valid || registerEmailForm.form.pristine" class="form-group">
+                                    <ul class="help-block text-danger" *ngIf="Password.errors">
+                                        <li [hidden]="!Password.errors.requireDigit">{{l("PasswordComplexity_RequireDigit_Hint")}}</li>
+                                        <li [hidden]="!Password.errors.requireLowercase">{{l("PasswordComplexity_RequireLowercase_Hint")}}</li>
+                                        <li [hidden]="!Password.errors.requireUppercase">{{l("PasswordComplexity_RequireUppercase_Hint")}}</li>
+                                        <li [hidden]="!Password.errors.requireNonAlphanumeric">{{l("PasswordComplexity_RequireNonAlphanumeric_Hint")}}</li>
+                                        <li [hidden]="!Password.errors.requiredLength">{{l("PasswordComplexity_RequiredLength_Hint", passwordComplexitySetting.requiredLength)}}</li>
+                                    </ul>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="PasswordRepeat" class="form-control" [ngModel]="model.passwordRepeat" #PasswordRepeat="ngModel" placeholder="{{l('PasswordRepeat')}}" validateEqual="Password"
+                                           reverse="false" [requireDigit]="passwordComplexitySetting.requireDigit" [requireLowercase]="passwordComplexitySetting.requireLowercase"
+                                           [requireUppercase]="passwordComplexitySetting.requireUppercase" [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric" [requiredLength]="passwordComplexitySetting.requiredLength"
+                                           required>
+                                </div>
+                                <div [hidden]="registerEmailForm.form.valid || registerEmailForm.form.pristine" class="form-group">
+                                    <ul class="help-block text-danger" *ngIf="PasswordRepeat.errors">
+                                        <li [hidden]="!PasswordRepeat.errors.requireDigit">{{l("PasswordComplexity_RequireDigit_Hint")}}</li>
+                                        <li [hidden]="!PasswordRepeat.errors.requireLowercase">{{l("PasswordComplexity_RequireLowercase_Hint")}}</li>
+                                        <li [hidden]="!PasswordRepeat.errors.requireUppercase">{{l("PasswordComplexity_RequireUppercase_Hint")}}</li>
+                                        <li [hidden]="!PasswordRepeat.errors.requireNonAlphanumeric">{{l("PasswordComplexity_RequireNonAlphanumeric_Hint")}}</li>
+                                        <li [hidden]="!PasswordRepeat.errors.requiredLength">{{l("PasswordComplexity_RequiredLength_Hint", passwordComplexitySetting.requiredLength)}}</li>
+                                        <li [hidden]="PasswordRepeat.valid">{{l("PasswordsDontMatch")}}</li>
+                                    </ul>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login" [disabled]="!registerEmailForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')"><i class="fa fa-check"></i> {{l("Submit")}}</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="tab_2_2_content">
+                            <form #registerPhoneForm="ngForm" method="post" novalidate (ngSubmit)="registByPhone()">
+                                <div class="form-group">
+                                    <label for="signup-phone" class="hide">Phone</label>
+                                    <input id="signup-phone" #phoneInput="ngModel" class="form-control" type="text" placeholder="{{l('PhoneNumber')}} *" [(ngModel)]="model.phoneNumber" name="PhoneNumber" maxlength="256"/>
+                                    <validation-messages [formCtrl]="phoneInput"></validation-messages>
+                                </div>
+                                <div class="input-group">
+                                    <label for="signup-phone-code" class="hide">获取验证码</label>
+                                    <input id="signup-phone-code" #PhoneNumberInput="ngModel" class="form-control col-xs-6" type="text" placeholder="{{l('PhoneNumberCode')}} *" [(ngModel)]="model.phoneNumberValidateCode" name="PhoneCode" required maxlength="6"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" id="getCodeByPhone" (click)="getCodeByPhone()" class="btn btn-sm c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">获取验证码</button>
+                                    </span>
+                                    <validation-messages [formCtrl]="PhoneNumberInput"></validation-messages>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="PasswordPhone" class="form-control" [(ngModel)]="model.password" #PasswordPhone="ngModel" placeholder="{{l('Password')}}" validateEqual="PasswordPhoneRepeat"
+                                           reverse="true" [requireDigit]="passwordComplexitySetting.requireDigit" [requireLowercase]="passwordComplexitySetting.requireLowercase"
+                                           [requireUppercase]="passwordComplexitySetting.requireUppercase" [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric" [requiredLength]="passwordComplexitySetting.requiredLength"
+                                           required>
+                                </div>
+                                <div [hidden]="registerPhoneForm.form.valid || registerPhoneForm.form.pristine" class="form-group">
+                                    <ul class="help-block text-danger" *ngIf="PasswordPhone.errors">
+                                        <li [hidden]="!PasswordPhone.errors.requireDigit">{{l("PasswordComplexity_RequireDigit_Hint")}}</li>
+                                        <li [hidden]="!PasswordPhone.errors.requireLowercase">{{l("PasswordComplexity_RequireLowercase_Hint")}}</li>
+                                        <li [hidden]="!PasswordPhone.errors.requireUppercase">{{l("PasswordComplexity_RequireUppercase_Hint")}}</li>
+                                        <li [hidden]="!PasswordPhone.errors.requireNonAlphanumeric">{{l("PasswordComplexity_RequireNonAlphanumeric_Hint")}}</li>
+                                        <li [hidden]="!PasswordPhone.errors.requiredLength">{{l("PasswordComplexity_RequiredLength_Hint", passwordComplexitySetting.requiredLength)}}</li>
+                                    </ul>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="PasswordPhoneRepeat" class="form-control" [ngModel]="model.passwordRepeat" #PasswordPhoneRepeat="ngModel" placeholder="{{l('PasswordRepeat')}}" validateEqual="PasswordPhone"
+                                           reverse="false" [requireDigit]="passwordComplexitySetting.requireDigit" [requireLowercase]="passwordComplexitySetting.requireLowercase"
+                                           [requireUppercase]="passwordComplexitySetting.requireUppercase" [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric" [requiredLength]="passwordComplexitySetting.requiredLength"
+                                           required>
+                                </div>
+                                <div [hidden]="registerPhoneForm.form.valid || registerPhoneForm.form.pristine" class="form-group">
+                                    <ul class="help-block text-danger" *ngIf="PasswordPhoneRepeat.errors">
+                                        <li [hidden]="!PasswordPhoneRepeat.errors.requireDigit">{{l("PasswordComplexity_RequireDigit_Hint")}}</li>
+                                        <li [hidden]="!PasswordPhoneRepeat.errors.requireLowercase">{{l("PasswordComplexity_RequireLowercase_Hint")}}</li>
+                                        <li [hidden]="!PasswordPhoneRepeat.errors.requireUppercase">{{l("PasswordComplexity_RequireUppercase_Hint")}}</li>
+                                        <li [hidden]="!PasswordPhoneRepeat.errors.requireNonAlphanumeric">{{l("PasswordComplexity_RequireNonAlphanumeric_Hint")}}</li>
+                                        <li [hidden]="!PasswordPhoneRepeat.errors.requiredLength">{{l("PasswordComplexity_RequiredLength_Hint", passwordComplexitySetting.requiredLength)}}</li>
+                                        <li [hidden]="PasswordPhoneRepeat.valid">{{l("PasswordsDontMatch")}}</li>
+                                    </ul>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login" [disabled]="!registerPhoneForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')"><i class="fa fa-check"></i> {{l("Submit")}}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- END: CONTENT/USER/SIGNUP-FORM -->

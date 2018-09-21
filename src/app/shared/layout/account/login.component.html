@@ -1,0 +1,45 @@
+<!-- BEGIN: CONTENT/USER/LOGIN-FORM -->
+<div class="modal fade c-content-login-form" id="login-form" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content c-square">
+            <div class="modal-header c-no-border">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <h3 class="c-font-24 c-font-sbold">{{l("LogIn")}}</h3>
+                <p>Let's make today a great day!</p>
+                <form #loginForm="ngForm" class="m-login__form m-form login-form" method="post" novalidate (ngSubmit)="login()">
+                    <div class="form-group">
+                        <label for="userNameOrEmailAddressInput" class="hide">Email</label>
+                        <input id="userNameOrEmailAddressInput" #userNameOrEmailAddressInput="ngModel" [(ngModel)]="loginService.authenticateModel.userNameOrEmailAddress" autoFocus class="form-control input-lg c-square" type="text" autocomplete="off" placeholder="{{l('UserNameOrEmail')}} *" name="userNameOrEmailAddress" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordInput" class="hide">Password</label>
+                        <input id="passwordInput" #passwordInput="ngModel" [(ngModel)]="loginService.authenticateModel.password" class="form-control input-lg c-square" type="password" autocomplete="off" placeholder="{{l('Password')}} *" name="password" required maxlength="32" placeholder="Password"/>
+                        <validation-messages [formCtrl]="passwordInput"></validation-messages>
+                    </div>
+                    <div class="form-group">
+                        <div class="c-checkbox">
+                            <input class="c-check" id="login-rememberme" [(ngModel)]="loginService.rememberMe" type="checkbox" name="rememberMe" value="true"/>
+                            <label for="login-rememberme" class="c-font-thin c-font-17">
+                                <span></span>
+                                <span class="check"></span>
+                                <span class="box"></span>
+                                {{l("RememberMe")}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login" [disabled]="!loginForm.form.valid">{{l("LogIn")}}</button>
+                        <a href="javascript:;" data-toggle="modal" data-target="#forget-password-form" data-dismiss="modal" class="c-btn-forgot">{{l("ForgotPassword")}}</a>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer c-no-border">
+                <span class="c-text-account">Don't Have An Account Yet ?</span>
+                <a href="javascript:;" data-toggle="modal" data-target="#signup-form" data-dismiss="modal" class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup">{{l("CreateAnAccount")}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: CONTENT/USER/LOGIN-FORM -->

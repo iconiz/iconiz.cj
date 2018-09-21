@@ -1,0 +1,34 @@
+﻿[
+  {
+    "outputFile": "src/assets/primeng/datatable/css/primeng.datatable.css",
+    "inputFile": "src/assets/primeng/datatable/css/primeng.datatable.less"
+  },
+  {
+    "outputFile": "src/assets/primeng/file-upload/css/primeng.file-upload.css",
+    "inputFile": "src/assets/primeng/file-upload/css/primeng.file-upload.less"
+  },
+  {
+    "outputFile": "src/assets/primeng/autocomplete/css/primeng.autocomplete.css",
+    "inputFile": "src/assets/primeng/autocomplete/css/primeng.autocomplete.less"
+  },
+  {
+    "outputFile": "src/assets/common/styles/themes/blue/primeng.datatable.css",
+    "inputFile": "src/assets/common/styles/themes/blue/primeng.datatable.less"
+  },
+  {
+    "outputFile": "src/assets/common/styles/themes/default/primeng.datatable.css",
+    "inputFile": "src/assets/common/styles/themes/default/primeng.datatable.less"
+  },
+  {
+    "outputFile": "src/assets/common/styles/themes/green/primeng.datatable.css",
+    "inputFile": "src/assets/common/styles/themes/green/primeng.datatable.less"
+  },
+  {
+    "outputFile": "src/assets/common/styles/themes/pink/primeng.datatable.css",
+    "inputFile": "src/assets/common/styles/themes/pink/primeng.datatable.less"
+  },
+  {
+    "outputFile": "src/assets/common/styles/themes/yellow/primeng.datatable.css",
+    "inputFile": "src/assets/common/styles/themes/yellow/primeng.datatable.less"
+  }
+]

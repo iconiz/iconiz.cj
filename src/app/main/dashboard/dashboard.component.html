@@ -1,0 +1,106 @@
+<div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+    <div class="container">
+        <div class="c-page-title c-pull-left">
+            <h3 class="c-font-uppercase c-font-sbold">区块链新闻</h3>
+        </div>
+        <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+            <li><a href="#">新闻</a></li>
+            <li>/</li>
+            <li class="c-state_active">新闻</li>
+        </ul>
+    </div>
+</div>
+<!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
+<!-- BEGIN: BLOG LISTING -->
+<section class="c-content-box c-size-md">
+    <div class="container" *ngIf="!topicSignal">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="c-content-blog-post-card-1-grid">
+                    <div class="row">
+                        <div *ngFor="let item of topicListItems; let last = last" class="col-sm-6 col-xs-12">
+                            <div class="c-content-blog-post-card-1 c-option-2 c-bordered">
+                                <div class="c-media c-content-overlay">
+                                    <div class="c-overlay-wrapper">
+                                        <div class="c-overlay-content">
+                                            <a [href]="item.url"><i class="icon-link"></i></a>
+                                            <a [href]="item.url" data-lightbox="fancybox" data-fancybox-group="gallery">
+                                                <i class="icon-magnifier"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <img class="c-overlay-object img-responsive" [src]="item.thumbnail" alt="">
+                                </div>
+                                <div class="c-body">
+                                    <div class="c-title c-font-bold c-font-uppercase">
+                                        <a href="javascript:;" (click)="showSignal(item)">{{item.title}}</a>
+                                    </div>
+                                    <div class="c-author">
+                                        By <a href="#"><span class="c-font-uppercase">{{item.author}}</span></a>
+                                        on <span class="c-font-uppercase">{{item.published_at}}</span>
+                                    </div>
+                                    <p>
+                                        {{item.summary}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn c-theme-btn c-btn-uppercase btn-md c-btn-sbold btn-block c-btn-square" style="float: right; width: 50%;" href="javascript:;" (click)="pageDown()">下一页</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- BEGIN: CONTENT/BLOG/BLOG-SIDEBAR-1 -->
+                <form action="#" method="post">
+                    <div class="input-group">
+                        <input type="text" class="form-control c-square c-theme-border" placeholder="Search blog...">
+                        <span class="input-group-btn">
+                            <button class="btn c-theme-btn c-theme-border c-btn-square" type="button">Go!</button>
+                        </span>
+                    </div>
+                </form>
+                <ul class="c-content-recent-posts-1">
+                    <li *ngFor="let item of liveItems">
+                        <div *ngIf="item.images.length > 0" class="c-image">
+                            <img *ngFor="let image of item.images" [src]="image.thumbnail" alt="" class="img-responsive">
+                        </div>
+                        <div class="c-post">
+                            <a href="javascript:;" class="c-title">
+                                {{item.content}}
+                            </a>
+                            <div class="c-date">{{getTime(item.created_at)}}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="topicSignal">
+        <div class="c-content-blog-post-1-view">
+            <div class="c-content-blog-post-1">
+                <div class="c-media">
+                    <div class="c-content-media-2-slider" data-slider="owl">
+                        <div class="owl-carousel owl-theme c-theme owl-single" data-rtl="false" data-single-item="true" data-auto-play="4000">
+                            <div class="item">
+                                <img class="c-content-media-2 img-responsive" [src]="topicSignal.thumbnail"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="c-title c-font-bold c-font-uppercase">
+                    <a href="javascript:;">{{topicSignal.title}}</a>
+                </div>
+                <div class="c-panel c-margin-b-30">
+                    <div class="c-author"><a href="#">By <span class="c-font-uppercase">{{topicSignal.author}}</span></a></div>
+                    <div class="c-date">on <span class="c-font-uppercase">{{topicSignal.published_time}}</span></div>
+                    <ul class="c-tags c-theme-ul-bg">
+                        <li>{{topicSignal.resource}}</li>
+                    </ul>
+                </div>
+                <div class="c-desc" [innerHtml]="topicSignal.content">
+                </div>
+                <a class="btn c-theme-btn c-btn-uppercase btn-md c-btn-sbold btn-block c-btn-square" style="float: right; width: 50%;" href="javascript:;" (click)="hideSignal()">返回</a>
+            </div>
+        </div>
+    </div>
+</section>

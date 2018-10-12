@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <h3 class="c-font-24 c-font-sbold">{{l("LogIn")}}</h3>
                 <p>Let's make today a great day!</p>
-                <form #loginForm="ngForm" class="m-login__form m-form login-form" method="post" novalidate (ngSubmit)="login()">
+                <form #loginForm="ngForm" method="post" novalidate (ngSubmit)="login()">
                     <div class="form-group">
                         <label for="userNameOrEmailAddressInput" class="hide">Email</label>
                         <input id="userNameOrEmailAddressInput" #userNameOrEmailAddressInput="ngModel" [(ngModel)]="loginService.authenticateModel.userNameOrEmailAddress" autoFocus class="form-control input-lg c-square" type="text" autocomplete="off" placeholder="{{l('UserNameOrEmail')}} *" name="userNameOrEmailAddress" required/>

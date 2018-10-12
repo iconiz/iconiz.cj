@@ -297,7 +297,7 @@ var LayoutOnepageNav = function () {
 		var nav;
 
 		$('body').addClass('c-page-on-scroll');
-		offset = $('.c-layout-header-onepage').outerHeight(true);
+		offset = $('.c-layout-header-onepage').outerHeight(true) || 0;
 		$('body').removeClass('c-page-on-scroll');
 
 		if ($('.c-mega-menu-onepage-dots').width() > 0) {
@@ -452,10 +452,10 @@ var ContentOwlcarousel = function () {
 			var itemsTabletSmall;
 			var itemsMobile;
 
-			var rtl_mode = (parent.data('rtl')) ? parent.data('rtl') : false ; 
-			var items_loop = (parent.data('loop')) ? parent.data('loop') : true ; 
-			var items_nav_dots = (parent.attr('data-navigation-dots')) ? parent.data('navigation-dots') : true ; 
-			var items_nav_label = (parent.attr('data-navigation-label')) ? parent.data('navigation-label') : false ; 
+			var rtl_mode = (parent.data('rtl')) ? parent.data('rtl') : false ;
+			var items_loop = (parent.data('loop')) ? parent.data('loop') : true ;
+			var items_nav_dots = (parent.attr('data-navigation-dots')) ? parent.data('navigation-dots') : true ;
+			var items_nav_label = (parent.attr('data-navigation-label')) ? parent.data('navigation-label') : false ;
 
 			if (parent.data("single-item") == true) {
 				items = 1;
@@ -517,117 +517,6 @@ var ContentOwlcarousel = function () {
 }();
 // END: OwlCarousel
 
-// BEGIN: ContentCubeLatestPortfolio
-var ContentCubeLatestPortfolio = function () {
-
-	var _initInstances = function () {
-
-		// init cubeportfolio
-		$('.c-content-latest-works').cubeportfolio({
-			filters: '#filters-container',
-			loadMore: '#loadMore-container',
-			loadMoreAction: 'click',
-			layoutMode: 'grid',
-			defaultFilter: '*',
-			animationType: 'quicksand',
-			gapHorizontal: 20,
-			gapVertical: 23,
-			gridAdjustment: 'responsive',
-			mediaQueries: [{
-				width: 1100,
-				cols: 4
-			}, {
-				width: 800,
-				cols: 3
-			}, {
-				width: 500,
-				cols: 2
-			}, {
-				width: 320,
-				cols: 1
-			}],
-			caption: 'zoom',
-			displayType: 'lazyLoading',
-			displayTypeSpeed: 100,
-
-			// lightbox
-			lightboxDelegate: '.cbp-lightbox',
-			lightboxGallery: true,
-			lightboxTitleSrc: 'data-title',
-			lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>',
-
-			// singlePage popup
-			singlePageDelegate: '.cbp-singlePage',
-			singlePageDeeplinking: true,
-			singlePageStickyNavigation: true,
-			singlePageCounter: '<div class="cbp-popup-singlePage-counter">{{current}} of {{total}}</div>',
-			singlePageCallback: function (url, element) {
-				// to update singlePage content use the following method: this.updateSinglePage(yourContent)
-				var t = this;
-
-				$.ajax({
-					url: url,
-					type: 'GET',
-					dataType: 'html',
-					timeout: 5000
-				})
-					.done(function (result) {
-						t.updateSinglePage(result);
-					})
-					.fail(function () {
-						t.updateSinglePage("Error! Please refresh the page!");
-					});
-			},
-		});
-
-		$('.c-content-latest-works-fullwidth').cubeportfolio({
-			loadMoreAction: 'auto',
-			layoutMode: 'grid',
-			defaultFilter: '*',
-			animationType: 'fadeOutTop',
-			gapHorizontal: 0,
-			gapVertical: 0,
-			gridAdjustment: 'responsive',
-			mediaQueries: [{
-				width: 1600,
-				cols: 5
-			}, {
-				width: 1200,
-				cols: 4
-			}, {
-				width: 800,
-				cols: 3
-			}, {
-				width: 500,
-				cols: 2
-			}, {
-				width: 320,
-				cols: 1
-			}],
-			caption: 'zoom',
-			displayType: 'lazyLoading',
-			displayTypeSpeed: 100,
-
-			// lightbox
-			lightboxDelegate: '.cbp-lightbox',
-			lightboxGallery: true,
-			lightboxTitleSrc: 'data-title',
-			lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>',
-		});
-
-	};
-
-	return {
-
-		//main function to initiate the module
-		init: function () {
-			_initInstances();
-		}
-
-	};
-}();
-// END: ContentCubeLatestPortfolio
-
 // BEGIN: CounterUp
 var ContentCounterUp = function () {
 
@@ -651,55 +540,6 @@ var ContentCounterUp = function () {
 }();
 // END: CounterUp
 
-// BEGIN: Fancybox
-var ContentFancybox = function () {
-
-	var _initInstances = function () {
-		// init fancybox
-		$("[data-lightbox='fancybox']").fancybox();
-	};
-
-	return {
-
-		//main function to initiate the module
-		init: function () {
-			_initInstances();
-		}
-
-	};
-}();
-// END: Fancybox
-
-// BEGIN: Twitter
-var ContentTwitter = function () {
-
-	var _initInstances = function () {
-		// init twitter
-		if ($(".twitter-timeline")[0]) {
-			!function (d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-				if (!d.getElementById(id)) {
-					js = d.createElement(s);
-					js.id = id;
-					js.src = p + "://platform.twitter.com/widgets.js";
-					fjs.parentNode.insertBefore(js, fjs);
-				}
-			}(document, "script", "twitter-wjs");
-		}
-	};
-
-	return {
-
-		//main function to initiate the module
-		init: function () {
-			_initInstances();
-		}
-
-	};
-}();
-// END: Twitter
-
-
 // BEGIN : SCROLL TO VIEW DETECTION
 function isScrolledIntoView(elem)
 {
@@ -716,7 +556,7 @@ function isScrolledIntoView(elem)
 }
 // END : SCROLL TO VIEW FUNCTION
 
-// BEGIN : PROGRESS BAR 
+// BEGIN : PROGRESS BAR
 var LayoutProgressBar = function ($) {
 
     return {
@@ -736,7 +576,7 @@ var LayoutProgressBar = function ($) {
 				if(progress_data == 'Semicircle') { progress_data = 'SemiCircle'; }
 
 				// grab options
-				var bar_color = $(this).css('border-top-color'); // color	
+				var bar_color = $(this).css('border-top-color'); // color
 				var this_animation = $(this).data('animation'); // animation type : linear, easeIn, easeOut, easeInOut, bounce
 				var stroke_width = $(this).data('stroke-width'); // stroke width
 				var bar_duration = $(this).data('duration'); // duration
@@ -746,14 +586,14 @@ var LayoutProgressBar = function ($) {
 				var font_color = $(this).css('color'); // progress font color
 
 				// set default data if options is null / undefinded
-				if (bar_color == 'rgb(92, 104, 115)'){ bar_color = '#32c5d2'; } // set default color 
+				if (bar_color == 'rgb(92, 104, 115)'){ bar_color = '#32c5d2'; } // set default color
 				if (trail_color == ''){ trail_color = '#5c6873'; }
 				if (trail_width == ''){ trail_width = '0'; }
 				if (bar_progress == ""){ bar_progress = '1'; }
 				if (stroke_width == ""){ stroke_width = '3'; }
 				if (this_animation == ""){ this_animation = 'easeInOut'; }
 				if (bar_duration == ""){ bar_duration = '1500'; }
-	         
+
 
 	         	// set progress bar
 	         	var bar = new ProgressBar[progress_data](this_bar, {
@@ -763,10 +603,10 @@ var LayoutProgressBar = function ($) {
 		            color: bar_color,
 		            trailWidth: trail_width,
 		            trailColor: trail_color,
-		            svgStyle: null,		            
+		            svgStyle: null,
 	            	step: function (state, bar) {
 						bar.setText(Math.round(bar.value() * 100) + '%');
-					},									   
+					},
 					text: {
 						style: {
 							color: font_color,
@@ -779,7 +619,7 @@ var LayoutProgressBar = function ($) {
 			    if (check_scroll == true){
 		        	bar.animate(bar_progress);  // Number from 0.0 to 1.0
 		        }
-		        
+
 	         	// start progress bar animation upon scroll view
 		        $(window).scroll(function (event) {
 				    var check_scroll = isScrolledIntoView(this_bar); // check if progress bar is in view - return true / false
@@ -787,13 +627,13 @@ var LayoutProgressBar = function ($) {
 			        	bar.animate(bar_progress);  // Number from 0.0 to 1.0
 			        }
 				});
-				
+
 
         	});
 
-        	
-         
-           
+
+
+
         }
     }
 }(jQuery);
@@ -901,7 +741,7 @@ var ContentTyped = function () {
 				cursorChar: cursorChar,
 			});
 		});
-		
+
 	};
 
 	return {
@@ -960,12 +800,12 @@ $(document).ready(function () {
 	LayoutHeader.init();
 
 	// init plugin wrappers
-	ContentOwlcarousel.init();
-	ContentCubeLatestPortfolio.init();
+	//ContentOwlcarousel.init();
+	//ContentCubeLatestPortfolio.init();
 	//ContentCounterUp.init();
-	ContentFancybox.init();
-	ContentTwitter.init();
-	ContentDatePickers.init();
-	ContentTyped.init();
+	//ContentFancybox.init();
+	//ContentTwitter.init();
+	//ContentDatePickers.init();
+	//ContentTyped.init();
 });
 

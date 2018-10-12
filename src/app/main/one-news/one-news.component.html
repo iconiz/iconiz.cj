@@ -1,0 +1,75 @@
+<div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+    <div class="container">
+        <div class="c-page-title c-pull-left">
+            <h3 class="c-font-uppercase c-font-sbold">区块链新闻</h3>
+        </div>
+        <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+            <li><a href="#">新闻</a></li>
+            <li>/</li>
+            <li class="c-state_active">单篇新闻</li>
+        </ul>
+    </div>
+</div>
+<!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
+<!-- BEGIN: BLOG LISTING -->
+<section class="c-content-box c-size-md" #onenews>
+    <div class="container" #news>
+        <div class="c-content-blog-post-1">
+            <div class="c-media">
+                <div class="c-content-media-2-slider" data-slider="owl">
+                    <div class="owl-carousel owl-theme c-theme owl-single" data-rtl="false" data-single-item="true" data-auto-play="4000">
+                        <div class="item">
+                            <img class="c-content-media-2 img-responsive" [src]="topic.thumbnail"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-title c-font-bold c-font-uppercase">
+                <a href="javascript:;">{{topic.title}}</a>
+            </div>
+            <div class="c-panel c-margin-b-30">
+                <div class="c-author"><a href="#">By <span class="c-font-uppercase">{{topic.author}}</span></a></div>
+                <div class="c-date">on <span class="c-font-uppercase">{{topic.publishTime | momentFormat:'L LT'}}</span></div>
+                <ul class="c-tags c-theme-ul-bg">
+                    <li>{{topic.resource}}</li>
+                </ul>
+            </div>
+            <div class="c-desc" [innerHtml]="topic.content">
+            </div>
+            <a *ngIf="topic.resourceUrl" class="btn c-btn-red c-btn-uppercase btn-md c-btn-sbold btn-block c-btn-square" style="float: right; width: 50%;" [href]="topic.resourceUrl" target="_blank">原文链接</a>
+            <a class="btn c-theme-btn c-btn-uppercase btn-md c-btn-sbold btn-block c-btn-square" style="float: right; width: 50%;" [routerLink]="['../news']">返回</a>
+        </div>
+        <div class="c-comments" #newCommentForm>
+            <div class="c-content-title-1">
+                <h3 class="c-font-uppercase c-font-bold">总共 {{topic.commitCount}} 条评论</h3>
+                <div class="c-line-left"></div>
+            </div>
+            <div class="c-comment-list">
+                <div *ngFor="let comment of topic.iconizTopicComments" class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" alt="" src="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="#" class="c-font-bold">{{comment.authorName}}</a> on <span class="c-date">{{comment.creationTime | momentFormat:'L LT'}}</span></h4>
+                        {{comment.content}}
+                    </div>
+                </div>
+            </div>
+            <div class="c-content-title-1 c-margin-t-30">
+                <h3 class="c-font-uppercase c-font-bold" *ngIf="isUserLogedin()">写下您的评论</h3>
+                <h3 class="c-font-uppercase c-font-bold" *ngIf="!isUserLogedin()">您需要登录才可以发表评论</h3>
+                <div class="c-line-left"></div>
+            </div>
+            <form action="#" *ngIf="isUserLogedin()" (submit)="sendNewComment()">
+                <div class="form-group">
+                    <textarea rows="8" name="message" [(ngModel)]="newComment" placeholder="写下您的评论..." class="form-control c-square"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn c-theme-btn c-btn-uppercase btn-md c-btn-sbold btn-block c-btn-square">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

@@ -37,6 +37,7 @@ export abstract class AppComponentBase {
         this.appSession = injector.get(AppSessionService);
         this.appUrlService = injector.get(AppUrlService);
         this.primengTableHelper = new PrimengTableHelper();
+        this.primengTableHelper.defaultRecordsCountPerPage = 36;
     }
 
     l(key: string, ...args: any[]): string {

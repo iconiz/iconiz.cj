@@ -1,0 +1,14 @@
+<div class="c-content-ver-nav">
+    <ul class="c-menu">
+        <ng-container *ngFor="let ticker of jinseTickers">
+            <li *ngIf="ticker.base">
+                <a href="javascript:;">
+                    {{ticker.base}}
+                    <span class="badge" [ngClass]="ticker.degree > 0 ? 'c-bg-red-2' : 'c-bg-green-2'">
+                    {{ticker.degree | number:'1.2-2'}}
+                </span>
+                </a>
+            </li>
+        </ng-container>
+    </ul>
+</div>

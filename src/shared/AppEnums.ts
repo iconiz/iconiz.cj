@@ -63,3 +63,11 @@ export class AppSalesSummaryDatePeriod {
     static Monthly: number = SalesSummaryDatePeriod._3;
 }
 
+export class TopicStatusEnum {
+    static draft = 0;
+    static pedding = 1;
+    static decline = 2;
+    static normal = 3;
+    static ontop = 4;
+}
+

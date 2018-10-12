@@ -62,6 +62,10 @@ interface JQuery {
     bootstrapSwitch(...any): any;
 }
 
+interface JQuery {
+    tooltip(...any): any;
+}
+
 /**
  * Morris
  */

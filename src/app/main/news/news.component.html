@@ -1,0 +1,192 @@
+<slider-bar></slider-bar>
+<div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+    <div class="container">
+        <div class="c-page-title c-pull-left">
+            <h3 class="c-font-uppercase c-font-sbold">区块链新闻</h3>
+        </div>
+        <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+            <li><a href="#">新闻</a></li>
+            <li>/</li>
+            <li class="c-state_active">新闻</li>
+        </ul>
+    </div>
+</div>
+<!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
+<!-- BEGIN: BLOG LISTING -->
+<section class="c-content-box c-size-md" #news>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form #searchForm="ngForm" method="post" novalidate (ngSubmit)="getTopicList()" id="searchNewsForm" class="c-margin-b-30">
+                    <div class="input-group">
+                        <input type="text" class="form-control c-square c-theme-border" placeholder="关键词..." [(ngModel)]="keyword" name="keyword">
+                        <span class="input-group-btn">
+                            <button class="btn c-theme-btn c-theme-border c-btn-square" type="submit">Go!</button>
+                        </span>
+                    </div>
+                </form>
+                <div class="row c-content-blog-post-card-1-grid">
+                    <div class="col-md-4">
+                        <div class="c-content-blog-post-card-1 c-option-2 c-bordered" *ngFor="let item of topicList1;">
+                            <div class="c-media c-content-overlay">
+                                <div class="c-overlay-wrapper">
+                                    <div class="c-overlay-content">
+                                        <a href="#"><i class="icon-link"></i></a>
+                                        <a href="{{item.thumbnail}}" data-lightbox="fancybox" data-fancybox-group="gallery">
+                                            <i class="icon-magnifier"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <img class="c-overlay-object img-responsive" src="{{item.thumbnail}}" alt="">
+                            </div>
+                            <div class="c-body">
+                                <div class="c-title c-font-bold c-font-uppercase">
+                                    <a [routerLink]="['../onenews']" [queryParams]="{id: item.id }">{{item.title}}</a>
+                                </div>
+                                <div class="c-author">
+                                    By <a href="#"><span class="c-font-uppercase">{{item.author}}</span></a>
+                                    on <span class="c-font-uppercase">{{item.publishTime | momentFormat:'L LT'}}</span>
+                                </div>
+
+                                <div class="c-panel">
+                                    <ul class="c-tags c-theme-ul-bg">
+                                        <li>{{item.upCount}} 赞</li>
+                                        <li>{{item.downCount}} 踩</li>
+                                        <li>{{item.readCount}} 阅读</li>
+                                    </ul>
+                                    <div class="c-comments"><a href="#"><i class="icon-speech"></i>{{item.commitCount}} 条评论</a></div>
+                                </div>
+                                <p>
+                                    {{item.summary}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="c-content-blog-post-card-1 c-option-2 c-bordered" *ngFor="let item of topicList2;">
+                            <div class="c-media c-content-overlay">
+                                <div class="c-overlay-wrapper">
+                                    <div class="c-overlay-content">
+                                        <a href="#"><i class="icon-link"></i></a>
+                                        <a href="{{item.thumbnail}}" data-lightbox="fancybox" data-fancybox-group="gallery">
+                                            <i class="icon-magnifier"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <img class="c-overlay-object img-responsive" src="{{item.thumbnail}}" alt="">
+                            </div>
+                            <div class="c-body">
+                                <div class="c-title c-font-bold c-font-uppercase">
+                                    <a [routerLink]="['../onenews']" [queryParams]="{id: item.id }">{{item.title}}</a>
+                                </div>
+                                <div class="c-author">
+                                    By <a href="#"><span class="c-font-uppercase">{{item.author}}</span></a>
+                                    on <span class="c-font-uppercase">{{item.publishTime | momentFormat:'L LT'}}</span>
+                                </div>
+
+                                <div class="c-panel">
+                                    <ul class="c-tags c-theme-ul-bg">
+                                        <li>{{item.upCount}} 赞</li>
+                                        <li>{{item.downCount}} 踩</li>
+                                        <li>{{item.readCount}} 阅读</li>
+                                    </ul>
+                                    <div class="c-comments"><a href="#"><i class="icon-speech"></i>{{item.commitCount}} 条评论</a></div>
+                                </div>
+                                <p>
+                                    {{item.summary}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="c-content-blog-post-card-1 c-option-2 c-bordered" *ngFor="let item of topicList3">
+                            <div class="c-media c-content-overlay">
+                                <div class="c-overlay-wrapper">
+                                    <div class="c-overlay-content">
+                                        <a href="#"><i class="icon-link"></i></a>
+                                        <a href="{{item.thumbnail}}" data-lightbox="fancybox" data-fancybox-group="gallery">
+                                            <i class="icon-magnifier"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <img class="c-overlay-object img-responsive" src="{{item.thumbnail}}" alt="">
+                            </div>
+                            <div class="c-body">
+                                <div class="c-title c-font-bold c-font-uppercase">
+                                    <a [routerLink]="['../onenews']" [queryParams]="{id: item.id }">{{item.title}}</a>
+                                </div>
+                                <div class="c-author">
+                                    By <a href="#"><span class="c-font-uppercase">{{item.author}}</span></a>
+                                    on <span class="c-font-uppercase">{{item.publishTime | momentFormat:'L LT'}}</span>
+                                </div>
+
+                                <div class="c-panel">
+                                    <ul class="c-tags c-theme-ul-bg">
+                                        <li>{{item.upCount}} 赞</li>
+                                        <li>{{item.downCount}} 踩</li>
+                                        <li>{{item.readCount}} 阅读</li>
+                                    </ul>
+                                    <div class="c-comments"><a href="#"><i class="icon-speech"></i>{{item.commitCount}} 条评论</a></div>
+                                </div>
+                                <p>
+                                    {{item.summary}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div *ngFor="let item of primengTableHelper.records">-->
+                <!--<div class="c-content-blog-post-1">-->
+                <!--<div class="topic-image col-sm-4" [ngStyle]="{'background-image': 'url('+item.thumbnail+')'}">-->
+                <!--</div>-->
+                <!--<div class="topic-desc col-sm-8">-->
+                <!--<div class="c-title c-font-bold c-font-uppercase">-->
+                <!--<a [routerLink]="['../onenews']" [queryParams]="{id: item.id }">{{item.title}}</a>-->
+                <!--</div>-->
+                <!--<div class="c-desc">-->
+                <!--{{item.summary}}-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="c-panel">-->
+                <!--<div class="c-author"><a href="#">By <span class="c-font-uppercase">{{item.author}}</span></a></div>-->
+                <!--<div class="c-date">on <span class="c-font-uppercase">{{item.publishTime | momentFormat:'L LT'}}</span></div>-->
+                <!--<ul class="c-tags c-theme-ul-bg">-->
+                <!--<li>{{item.upCount}} 赞</li>-->
+                <!--<li>{{item.downCount}} 踩</li>-->
+                <!--<li>{{item.readCount}} 阅读</li>-->
+                <!--</ul>-->
+                <!--<div class="c-comments"><a href="#"><i class="icon-speech"></i> {{item.commitCount}} 条评论</a></div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <div class="primeng-no-data" *ngIf="primengTableHelper.totalRecordsCount == 0">
+                    文章加载中...
+                </div>
+                <div class="primeng-paging-container">
+                    <p-paginator rows="{{primengTableHelper.defaultRecordsCountPerPage}}"
+                                 #paginator
+                                 (onPageChange)="getTopicList($event)"
+                                 [totalRecords]="primengTableHelper.totalRecordsCount">
+                    </p-paginator>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="c-content-recent-posts-1">
+                    <li *ngFor="let item of liveItems">
+                        <div *ngIf="item.images.length > 0" class="c-image">
+                            <img *ngFor="let image of item.images" [src]="image.thumbnail" alt="" class="img-responsive">
+                        </div>
+                        <div class="c-post">
+                            <a href="javascript:;" class="c-title">
+                                {{item.content}}
+                            </a>
+                            <div class="c-date">{{getTime(item.created_at) | momentFormat:'L LT'}}</div>
+                        </div>
+                    </li>
+                </ul>
+                <market-bar></market-bar>
+            </div>
+        </div>
+    </div>
+</section>

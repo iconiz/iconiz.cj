@@ -14,10 +14,15 @@ import { AppRouteGuard } from './shared/common/auth/auth-route-guard';
                         path: 'main',
                         loadChildren: 'app/main/main.module#MainModule', //Lazy load main module
                         data: { preload: true }
-                    }, {
+                    },
+                    {
+                        path: 'author',
+                        loadChildren: 'app/author/author.module#AuthorModule', //Lazy load main module
+                        data: { preload: true }
+                    },{
                         path: '',
                         children: [
-                            { path: '', redirectTo: '/app/main/dashboard', pathMatch: 'full' }
+                            { path: '', redirectTo: '/app/main/news', pathMatch: 'full' }
                         ]
                     },
                 ]

@@ -1,14 +1,14 @@
-import { Component, Injector, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { AppAuthService } from '@app/shared/common/auth/app-auth.service';
-import { AppConsts } from '@shared/AppConsts';
-import { EditionPaymentType, SubscriptionStartType } from '@shared/AppEnums';
-import { AppComponentBase } from '@shared/common/app-component-base';
-import { ChangeUserLanguageDto, GetCurrentLoginInformationsOutput, LinkedUserDto, ProfileServiceProxy, SessionServiceProxy, TenantLoginInfoDto, UserLinkServiceProxy, UserServiceProxy } from '@shared/service-proxies/service-proxies';
+import {Component, Injector, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {AppAuthService} from '@app/shared/common/auth/app-auth.service';
+import {AppConsts} from '@shared/AppConsts';
+import {EditionPaymentType, SubscriptionStartType} from '@shared/AppEnums';
+import {AppComponentBase} from '@shared/common/app-component-base';
+import {ChangeUserLanguageDto, GetCurrentLoginInformationsOutput, LinkedUserDto, ProfileServiceProxy, SessionServiceProxy, TenantLoginInfoDto, UserLinkServiceProxy, UserServiceProxy} from '@shared/service-proxies/service-proxies';
 import * as _ from 'lodash';
-import { LoginAttemptsModalComponent } from './login-attempts-modal.component';
-import { ChangePasswordModalComponent } from './profile/change-password-modal.component';
-import { ChangeProfilePictureModalComponent } from './profile/change-profile-picture-modal.component';
-import { MySettingsModalComponent } from './profile/my-settings-modal.component';
+import {LoginAttemptsModalComponent} from './login-attempts-modal.component';
+import {ChangePasswordModalComponent} from './profile/change-password-modal.component';
+import {ChangeProfilePictureModalComponent} from './profile/change-profile-picture-modal.component';
+import {MySettingsModalComponent} from './profile/my-settings-modal.component';
 
 @Component({
     templateUrl: './header.component.html',
@@ -38,6 +38,8 @@ export class HeaderComponent extends AppComponentBase implements OnInit {
     subscriptionStartType = SubscriptionStartType;
     editionPaymentType: typeof EditionPaymentType = EditionPaymentType;
 
+    shouldShowBackground;
+
     constructor(
         injector: Injector,
         private _profileServiceProxy: ProfileServiceProxy,
@@ -50,7 +52,6 @@ export class HeaderComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit() {
-
         this.languages = _.filter(this.localization.languages, l => (<any>l).isDisabled === false);
         this.currentLanguage = this.localization.currentLanguage;
         if (!this.appSession.user) {
@@ -61,6 +62,8 @@ export class HeaderComponent extends AppComponentBase implements OnInit {
         this.getRecentlyLinkedUsers();
 
         this.registerToEvents();
+
+        this.shouldShowBackground = location.pathname.indexOf('main/news') < 0;
     }
 
     registerToEvents() {
@@ -134,7 +137,7 @@ export class HeaderComponent extends AppComponentBase implements OnInit {
         this.shownLoginName = this.appSession.getShownLoginName();
     }
 
-    isUserLogedin(): boolean{
+    isUserLogedin(): boolean {
         return this.appSession.user != null;
     }
 }

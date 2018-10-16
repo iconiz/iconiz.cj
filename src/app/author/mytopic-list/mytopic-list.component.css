@@ -2,18 +2,3 @@
     position: inherit!important;
     float: right;
 }
-
-@media (min-width: 992px) {
-    .c-layout-page {
-        margin-top: 144px !important;
-    }
-}
-
-@media (max-width: 991px) {
-    .c-layout-page {
-        margin-top: 110px !important;
-    }
-}
-.c-layout-header{
-    background-image: url("/assets/base/img/content/backgrounds/bg-8.jpg") !important;
-}

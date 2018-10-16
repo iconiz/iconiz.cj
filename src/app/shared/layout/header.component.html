@@ -74,26 +74,26 @@
                 <nav class="c-mega-menu c-mega-menu-onepage c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold" data-onepage-animation-speed="700">
                     <ul class="nav navbar-nav c-theme-nav">
                         <li class="c-onepage-link c-active active">
-                            <a [routerLink]="['/']" class="c-link">主页</a>
+                            <a href="/" class="c-link">主页</a>
                         </li>
                         <li class="c-onepage-link ">
-                            <a [routerLink]="['/']" class="c-link">新闻</a>
+                            <a href="/#news" class="c-link">新闻</a>
                         </li>
                         <li class="c-onepage-link ">
-                            <a [routerLink]="['/']" class="c-link">快讯</a>
+                            <a href="/#lives" class="c-link">快讯</a>
                         </li>
                         <li class="c-onepage-link ">
-                            <a [routerLink]="['/']" class="c-link">联系我们</a>
+                            <a href="/#root" class="c-link">联系我们</a>
                         </li>
                         <li class="c-search-toggler-wrapper">
-                            <a href="javascript:;" class="c-btn-icon c-search-toggler"><i class="fa fa-search"></i></a>
+                            <a class="c-btn-icon c-search-toggler"><i class="fa fa-search"></i></a>
                         </li>
                         <li headerNotifications data-dropdown-persistent="true" id="header_notification_bar"></li>
                         <li *ngIf="!isUserLogedin()">
-                            <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i>Sign In</a>
+                            <a data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i>Sign In</a>
                         </li>
                         <li *ngIf="isUserLogedin()" class="c-cart-toggler-wrapper">
-                            <a href="javascript:;" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold c-cart-toggler"><p style="margin:0"><img *ngIf="profilePicture" style="height: 20px; margin-right: 10px;" [src]="profilePicture"/>{{shownLoginName}}</p></a>
+                            <a class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold c-cart-toggler"><p style="margin:0"><img *ngIf="profilePicture" style="height: 20px; margin-right: 10px;" [src]="profilePicture"/>{{shownLoginName}}</p></a>
                         </li>
                     </ul>
                 </nav>
@@ -159,6 +159,9 @@
         <!-- END: HOR NAV -->
     </div>
 </header>
+<div class="nav-background" *ngIf="shouldShowBackground"></div>
+<slider-bar *ngIf="!shouldShowBackground"></slider-bar>
+<!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
 <!-- END: HEADER --><!-- END: LAYOUT/HEADERS/HEADER-ONEPAGE -->
 <loginAttemptsModal #loginAttemptsModal></loginAttemptsModal>
 <changePasswordModal #changePasswordModal></changePasswordModal>

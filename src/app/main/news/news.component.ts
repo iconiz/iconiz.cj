@@ -16,6 +16,7 @@ import {Router} from '@angular/router';
 export class NewsComponent extends AppComponentBase implements OnInit, AfterViewInit {
 
     @ViewChild('news') news: ElementRef;
+    @ViewChild('lives') lives: ElementRef;
     @ViewChild('paginator') paginator: Paginator;
 
     constructor(
@@ -74,7 +75,9 @@ export class NewsComponent extends AppComponentBase implements OnInit, AfterView
     }
 
     getLive(): void {
+        abp.ui.setBusy(this.lives.nativeElement);
         this._iconizFinanceServiceProxy.getJinseLive().subscribe(result => {
+            abp.ui.clearBusy(this.lives.nativeElement);
             this.liveItems = result.list[0].lives;
         });
         //$.ajax({

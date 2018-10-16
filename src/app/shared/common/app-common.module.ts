@@ -11,11 +11,6 @@ import { TableModule } from 'primeng/table';
 import { AppAuthService } from './auth/app-auth.service';
 import { AppRouteGuard } from './auth/auth-route-guard';
 import { JqPluginDirective } from './libs/jq-plugin.directive';
-import { CommonLookupModalComponent } from './lookup/common-lookup-modal.component';
-import { DatePickerDirective } from './timing/date-picker.component';
-import { DateRangePickerComponent } from './timing/date-range-picker.component';
-import { DateTimeService } from './timing/date-time.service';
-import { TimeZoneComboComponent } from './timing/timezone-combo.component';
 
 @NgModule({
     imports: [
@@ -29,21 +24,12 @@ import { TimeZoneComboComponent } from './timing/timezone-combo.component';
         PaginatorModule
     ],
     declarations: [
-        TimeZoneComboComponent,
         JqPluginDirective,
-        CommonLookupModalComponent,
-        DateRangePickerComponent,
-        DatePickerDirective
     ],
     exports: [
-        TimeZoneComboComponent,
         JqPluginDirective,
-        CommonLookupModalComponent,
-        DateRangePickerComponent,
-        DatePickerDirective
     ],
     providers: [
-        DateTimeService,
         AppLocalizationService
     ]
 })

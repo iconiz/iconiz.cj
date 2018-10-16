@@ -112,7 +112,6 @@ export class LoginService {
             this._router.navigate(['account/reset-password'], {
                 queryParams: {
                     userId: authenticateResult.userId,
-                    tenantId: abp.session.tenantId,
                     resetCode: authenticateResult.passwordResetCode
                 }
             });

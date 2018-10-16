@@ -5,7 +5,6 @@ import { AppComponentBase } from '@shared/common/app-component-base';
 import { AppSessionService } from '@shared/common/session/app-session.service';
 import { CurrentUserProfileEditDto, DefaultTimezoneScope, ProfileServiceProxy, UpdateGoogleAuthenticatorKeyOutput } from '@shared/service-proxies/service-proxies';
 import { ModalDirective } from 'ngx-bootstrap';
-import { SmsVerificationModalComponent } from './sms-verification-modal.component';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -17,7 +16,6 @@ export class MySettingsModalComponent extends AppComponentBase implements AfterV
 
     @ViewChild('nameInput') nameInput: ElementRef;
     @ViewChild('mySettingsModal') modal: ModalDirective;
-    @ViewChild('smsVerificationModal') smsVerificationModal: SmsVerificationModalComponent;
     @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
 
     public active = false;
@@ -27,7 +25,6 @@ export class MySettingsModalComponent extends AppComponentBase implements AfterV
     public isPhoneNumberEmpty = false;
     public smsEnabled: boolean;
     public user: CurrentUserProfileEditDto;
-    public showTimezoneSelection: boolean = abp.clock.provider.supportsMultipleTimezone;
     public canChangeUserName: boolean;
     public defaultTimezoneScope: DefaultTimezoneScope = AppTimezoneScope.User;
     private _initialTimezone: string = undefined;
@@ -65,17 +62,6 @@ export class MySettingsModalComponent extends AppComponentBase implements AfterV
             this.user.qrCodeSetupImageUrl = result.qrCodeSetupImageUrl;
             this.isGoogleAuthenticatorEnabled = true;
         });
-    }
-
-    smsVerify(): void {
-        this._profileService.sendVerificationSms()
-            .subscribe(() => {
-                this.smsVerificationModal.show();
-            });
-    }
-
-    changePhoneNumberToVerified(): void {
-        this.isPhoneNumberConfirmed = true;
     }
 
     onShown(): void {

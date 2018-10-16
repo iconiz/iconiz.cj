@@ -1,22 +1,8 @@
-<slider-bar></slider-bar>
-<div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
-    <div class="container">
-        <div class="c-page-title c-pull-left">
-            <h3 class="c-font-uppercase c-font-sbold">区块链新闻</h3>
-        </div>
-        <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
-            <li><a href="#">新闻</a></li>
-            <li>/</li>
-            <li class="c-state_active">新闻</li>
-        </ul>
-    </div>
-</div>
-<!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
 <!-- BEGIN: BLOG LISTING -->
-<section class="c-content-box c-size-md" #news>
+<section class="c-content-box c-size-md">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8" id="#news" #news>
                 <form #searchForm="ngForm" method="post" novalidate (ngSubmit)="getTopicList()" id="searchNewsForm" class="c-margin-b-30">
                     <div class="input-group">
                         <input type="text" class="form-control c-square c-theme-border" placeholder="关键词..." [(ngModel)]="keyword" name="keyword">
@@ -62,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" #lives>
                         <div class="c-content-blog-post-card-1 c-option-2 c-bordered" *ngFor="let item of topicList2;">
                             <div class="c-media c-content-overlay">
                                 <div class="c-overlay-wrapper">
@@ -103,7 +89,7 @@
                             <div class="c-media c-content-overlay">
                                 <div class="c-overlay-wrapper">
                                     <div class="c-overlay-content">
-                                        <a href="#"><i class="icon-link"></i></a>
+                                        <a [routerLink]="['../onenews']" [queryParams]="{id: item.id }"><i class="icon-link"></i></a>
                                         <a href="{{item.thumbnail}}" data-lightbox="fancybox" data-fancybox-group="gallery">
                                             <i class="icon-magnifier"></i>
                                         </a>
@@ -126,7 +112,7 @@
                                         <li>{{item.downCount}} 踩</li>
                                         <li>{{item.readCount}} 阅读</li>
                                     </ul>
-                                    <div class="c-comments"><a href="#"><i class="icon-speech"></i>{{item.commitCount}} 条评论</a></div>
+                                    <div class="c-comments"><a href="#"><i class="icon-speech"></i> {{item.commitCount}} 条评论</a></div>
                                 </div>
                                 <p>
                                     {{item.summary}}
@@ -171,7 +157,7 @@
                     </p-paginator>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" id="#lives">
                 <ul class="c-content-recent-posts-1">
                     <li *ngFor="let item of liveItems">
                         <div *ngIf="item.images.length > 0" class="c-image">

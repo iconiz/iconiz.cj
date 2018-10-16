@@ -1,6 +1,21 @@
 .swal-overlay {
     z-index: 10051 !important;
 }
-.swal-modal{
+
+.swal-modal {
     z-index: 10052 !important;
+}
+
+.nav-background {
+    height: 144px;
+}
+
+@media (max-width: 991px) {
+    .nav-background {
+        height: 110px !important;
+    }
+}
+
+.nav-background {
+    background-image: url("/assets/base/img/content/backgrounds/bg-8.jpg") !important;
 }

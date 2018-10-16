@@ -8,8 +8,7 @@ import {NewsComponent} from './news/news.component';
 import {MainRoutingModule} from './main-routing.module';
 import {PaginatorModule} from 'primeng/primeng';
 import {OneNewsComponent} from './one-news/one-news.component';
-import {MarketComponent} from './layout/market.component';
-import {SliderComponent} from './layout/slider.component';
+import {MarketComponent} from '../shared/layout/market.component';
 
 @NgModule({
     imports: [
@@ -26,8 +25,7 @@ import {SliderComponent} from './layout/slider.component';
     declarations: [
         NewsComponent,
         MarketComponent,
-        OneNewsComponent,
-        SliderComponent
+        OneNewsComponent
     ]
 })
 
